@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "loker",
+    "database": "job-match",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "job-match-test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "database_production",
+    "database": "job-match-prod",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
