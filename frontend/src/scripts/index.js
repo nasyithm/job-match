@@ -4,7 +4,7 @@ import "../styles/responsive.css";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const dataJson = await import("../DATA.json");
-  const datas = dataJson.default.restaurants;
+  const datas = dataJson.default.workers;
   let dataCard = "";
   datas.forEach(function (data) {
     dataCard += `

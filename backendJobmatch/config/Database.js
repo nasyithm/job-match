@@ -1,7 +1,7 @@
 import {Sequelize} from "sequelize";
 
-const db = new Sequelize('jobmatch','root','',{
-    host: 'localhost',
+const db = new Sequelize('jobmatchdb','jobmatchuser','jobmatchpass123#',{
+    host: 'https://www.db4free.net',
     dialect: "mysql"
 });
 

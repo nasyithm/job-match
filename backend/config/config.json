@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "job-match",
-    "host": "127.0.0.1",
+    "username": "jobmatchuser",
+    "password": "jobmatchpass123#",
+    "database": "jobmatchdb",
+    "host": "db4free.net",
     "dialect": "mysql"
   },
   "test": {
