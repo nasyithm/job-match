@@ -5,13 +5,13 @@ import {
     createUser,
     updateUser,
     deleteUser
-} from "../controllers/Users.js";
+} from "../controllers/UsersController.js";
 import { verifyUser, adminOnly } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
 router.get('/users', verifyUser, getUsers);
-router.get('/users/:id', verifyUser, adminOnly, getUserById);
+router.get('/users/:id', verifyUser, getUserById);
 router.post('/users', createUser);
 router.patch('/users/:id', verifyUser, updateUser);
 router.delete('/users/:id', verifyUser, adminOnly, deleteUser);

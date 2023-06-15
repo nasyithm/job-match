@@ -2,10 +2,10 @@ import Loker from "../models/LokerModel.js";
 import path from "path";
 import fs from "fs";
 
-export const getLokers = async (req, res) => {
+export const getLoker = async (req, res) => {
   try {
     const response = await Loker.findAll();
-    res.json(response);
+    res.json({ loker: response });
   } catch (error) {
     console.log(error.message);
   }
@@ -18,15 +18,30 @@ export const getLokerById = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.json(response);
+    res.json({ loker: response });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getLokerByUuid = async (req, res) => {
+  try {
+    const response = await Loker.findOne({
+      where: {
+        uuid: req.params.uuid,
+      },
+    });
+    res.json({ loker: response });
   } catch (error) {
     console.log(error.message);
   }
 };
 
 export const saveLoker = (req, res) => {
-  if (req.files === null) return res.status(400).json({ msg: "No File Uploaded" });
-  const name = req.body.title;
+  if (req.files === null)
+    return res.status(400).json({ msg: "No File Uploaded" });
+  const uuid = req.body.uuid;
+  const name = req.body.name;
   const description = req.body.description;
   const location = req.body.location;
   const contact = req.body.contact;
@@ -37,13 +52,23 @@ export const saveLoker = (req, res) => {
   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
-  if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: "Invalid Images" });
-  if (fileSize > 5000000) return res.status(422).json({ msg: "Image must be less than 5 MB" });
+  if (!allowedType.includes(ext.toLowerCase()))
+    return res.status(422).json({ msg: "Invalid Images" });
+  if (fileSize > 5000000)
+    return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
   file.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
     try {
-      await Loker.create({ name: name, image: fileName, url: url, description: description, location: location,contact: contact });
+      await Loker.create({
+        uuid: uuid,
+        name: name,
+        image: fileName,
+        url: url,
+        description: description,
+        location: location,
+        contact: contact,
+      });
       res.status(201).json({ msg: "Loker Created Successfully" });
     } catch (error) {
       console.log(error.message);
@@ -68,18 +93,21 @@ export const updateLoker = async (req, res) => {
     const ext = path.extname(file.name);
     fileName = file.md5 + ext;
     const allowedType = [".png", ".jpg", ".jpeg"];
-    if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: "Invalid Images" });
-    if (fileSize > 5000000) return res.status(422).json({ msg: "Image must be less than 5 MB" });
+    if (!allowedType.includes(ext.toLowerCase()))
+      return res.status(422).json({ msg: "Invalid Images" });
+    if (fileSize > 5000000)
+      return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
     const filepath = `./public/images/${loker.image}`;
     fs.unlinkSync(filepath);
 
     file.mv(`./public/images/${fileName}`, (err) => {
-      if (err) return res.status(500) .json({ msg: err.message });
+      if (err) return res.status(500).json({ msg: err.message });
     });
   }
 
-  const name = req.body.title;
+  const uuid = req.body.uuid;
+  const name = req.body.name;
   const contact = req.body.contact;
   const description = req.body.description;
   const location = req.body.location;
@@ -87,7 +115,15 @@ export const updateLoker = async (req, res) => {
 
   try {
     await Loker.update(
-      { name: name, image: fileName, url: url,description: description,location: location,contact: contact },
+      {
+        uuid: uuid,
+        name: name,
+        image: fileName,
+        url: url,
+        description: description,
+        location: location,
+        contact: contact,
+      },
       {
         where: {
           id: req.params.id,

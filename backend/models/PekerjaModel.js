@@ -4,23 +4,24 @@ import db from "../config/Database.js";
 const { DataTypes } = Sequelize;
 
 const Pekerja = db.define(
-  'pekerja',
+  "pekerja",
   {
+    uuid: DataTypes.STRING,
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    alamat: DataTypes.STRING,
-    tempatTanggalLahir: DataTypes.STRING,
-    agama: DataTypes.STRING,
-    jenisKelamin: DataTypes.STRING,
-    keahlian: DataTypes.STRING,
-    ijazah: DataTypes.STRING,
-    deskripsi: DataTypes.TEXT,
+    address: DataTypes.STRING,
+    placeDateBirth: DataTypes.STRING,
+    religion: DataTypes.STRING,
+    gender: DataTypes.STRING,
+    skill: DataTypes.STRING,
+    education: DataTypes.STRING,
+    description: DataTypes.TEXT,
     image: DataTypes.STRING,
     url: DataTypes.STRING,
-    noTelp: DataTypes.STRING
+    phoneNumber: DataTypes.STRING,
   },
   {
-    freezeTableName: true
+    freezeTableName: true,
   }
 );
 

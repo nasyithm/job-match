@@ -1,7 +1,8 @@
 import express from "express";
 import {
-getLokers,
+getLoker,
 getLokerById,
+getLokerByUuid,
 saveLoker,
 updateLoker,
 deleteLoker
@@ -9,10 +10,11 @@ deleteLoker
 
 const router = express.Router();
 
-router.get('/lokers', getLokers);
-router.get('/lokers/:id', getLokerById);
-router.post('/lokers', saveLoker);
-router.patch('/lokers/:id', updateLoker);
-router.delete('/lokers/:id', deleteLoker);
+router.get('/loker', getLoker);
+router.get('/loker/:id', getLokerById);
+router.get('/loker/uuid/:uuid', getLokerByUuid);
+router.post('/loker', saveLoker);
+router.patch('/loker/:id', updateLoker);
+router.delete('/loker/:id', deleteLoker);
 
 export default router;
