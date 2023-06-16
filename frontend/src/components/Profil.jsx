@@ -26,20 +26,20 @@ const Profil = () => {
   const handleDelete = async () => {
     if (user.role === "pekerja") {
       try {
-        await axios.delete(`http://localhost:5000/pekerja/uuid/${user.uuid}`);
+        await axios.delete(`https://job-match-api.up.railway.app/pekerja/uuid/${user.uuid}`);
       } catch (error) {
         console.log(error);
       }
     } else if (user.role === "loker") {
       try {
-        await axios.delete(`http://localhost:5000/loker/uuid/${user.uuid}`);
+        await axios.delete(`https://job-match-api.up.railway.app/loker/uuid/${user.uuid}`);
       } catch (error) {
         console.log(error);
       }
     }
 
     try {
-      await axios.delete(`http://localhost:5000/users/uuid/${user.uuid}`);
+      await axios.delete(`https://job-match-api.up.railway.app/users/uuid/${user.uuid}`);
     } catch (error) {
       console.log(error);
     }

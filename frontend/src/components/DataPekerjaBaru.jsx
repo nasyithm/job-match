@@ -40,7 +40,7 @@ const DataPekerjaBaru = () => {
     formData.append("phoneNumber", phoneNumber);
     formData.append("file", file);
     try {
-      await axios.post("http://localhost:5000/pekerja", formData, {
+      await axios.post("https://job-match-api.up.railway.app/pekerja", formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },

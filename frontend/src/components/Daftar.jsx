@@ -14,7 +14,7 @@ const Daftar = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/users`, {
+      await axios.post(`https://job-match-api.up.railway.app/users`, {
         name: name,
         email: email,
         password: password,

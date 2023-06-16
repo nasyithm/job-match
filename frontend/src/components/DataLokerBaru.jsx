@@ -29,7 +29,7 @@ const DataLokerBaru = () => {
     formData.append("contact", contact);
     formData.append("file", file);
     try {
-      await axios.post("http://localhost:5000/loker", formData, {
+      await axios.post("https://job-match-api.up.railway.app/loker", formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },

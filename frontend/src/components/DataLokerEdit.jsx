@@ -23,7 +23,7 @@ const DataLokerEdit = () => {
     const getLokerByUuid = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/loker/uuid/${uuid}`
+          `https://job-match-api.up.railway.app/loker/uuid/${uuid}`
         );
         setName(response.data.loker.name);
         setLocation(response.data.loker.location);
@@ -47,7 +47,7 @@ const DataLokerEdit = () => {
     formData.append("contact", contact);
     formData.append("file", file);
     try {
-      await axios.patch(`http://localhost:5000/loker/uuid/${uuid}`, formData, {
+      await axios.patch(`https://job-match-api.up.railway.app/loker/uuid/${uuid}`, formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },

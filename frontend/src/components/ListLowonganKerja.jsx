@@ -10,7 +10,7 @@ const ListLowonganKerja = () => {
   }, []);
 
   const getJobs = async () => {
-    const response = await axios.get("http://localhost:5000/loker");
+    const response = await axios.get("https://job-match-api.up.railway.app/loker");
     setJobs(response.data.loker);
   };
 

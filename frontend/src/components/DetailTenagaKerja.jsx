@@ -11,7 +11,7 @@ const DetailTenagaKerja = () => {
   }, []);
 
   const getWorker = async () => {
-    const response = await axios.get(`http://localhost:5000/pekerja/${id}`);
+    const response = await axios.get(`https://job-match-api.up.railway.app/pekerja/${id}`);
     setWorker(response.data.pekerja);
   };
 

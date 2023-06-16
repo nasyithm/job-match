@@ -10,14 +10,9 @@ const ListTenagaKerja = () => {
   }, []);
 
   const getWorkers = async () => {
-    const response = await axios.get("http://localhost:5000/pekerja");
+    const response = await axios.get("https://job-match-api.up.railway.app/pekerja");
     setWorkers(response.data.pekerja);
   };
-
-//   const deleteWorkers = async (userId) => {
-//     await axios.delete(`http://localhost:5000/pekerja/${userId}`);
-//     getWorkers();
-//   };
 
   return (
     <div>
