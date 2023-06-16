@@ -22,7 +22,7 @@ const store = new sessionStore({
 app.use(
   cors({
     credentials: false,
-    origin: '*',
+    origin: 'http://localhost:3000',
   })
 );
 app.use(express.json());
