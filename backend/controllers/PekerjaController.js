@@ -89,7 +89,7 @@ export const savePekerja = (req, res) => {
   });
 };
 
-export const updatePekerja = async (req, res) => {
+export const updatePekerjaById = async (req, res) => {
   const pekerja = await Pekerja.findOne({
     where: {
       id: req.params.id,
@@ -160,7 +160,74 @@ export const updatePekerja = async (req, res) => {
   }
 };
 
-export const deletePekerja = async (req, res) => {
+export const updatePekerjaByUuid = async (req, res) => {
+  const pekerja = await Pekerja.findOne({
+    where: {
+      uuid: req.params.uuid,
+    },
+  });
+  if (!pekerja) return res.status(404).json({ msg: "No Data Found" });
+
+  let fileName = "";
+  if (req.files === null) {
+    fileName = pekerja.image;
+  } else {
+    const file = req.files.file;
+    const fileSize = file.data.length;
+    const ext = path.extname(file.name);
+    fileName = file.md5 + ext;
+    const allowedType = [".png", ".jpg", ".jpeg"];
+    if (!allowedType.includes(ext.toLowerCase()))
+      return res.status(422).json({ msg: "Invalid Images" });
+    if (fileSize > 5000000)
+      return res.status(422).json({ msg: "Image must be less than 5 MB" });
+
+    const filepath = `./public/images/${pekerja.image}`;
+    fs.unlinkSync(filepath);
+
+    file.mv(`./public/images/${fileName}`, (err) => {
+      if (err) return res.status(500).json({ msg: err.message });
+    });
+  }
+  const name = req.body.name;
+  const address = req.body.address;
+  const placeDateBirth = req.body.placeDateBirth;
+  const religion = req.body.religion;
+  const gender = req.body.gender;
+  const skill = req.body.skill;
+  const education = req.body.education;
+  const phoneNumber = req.body.phoneNumber;
+  const description = req.body.description;
+  const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+
+  try {
+    await Pekerja.update(
+      {
+        name: name,
+        address: address,
+        placeDateBirth: placeDateBirth,
+        religion: religion,
+        gender: gender,
+        skill: skill,
+        education: education,
+        description: description,
+        phoneNumber: phoneNumber,
+        image: fileName,
+        url: url,
+      },
+      {
+        where: {
+          uuid: req.params.uuid,
+        },
+      }
+    );
+    res.status(200).json({ msg: "Pekerja Updated Successfully" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const deletePekerjaById = async (req, res) => {
   const pekerja = await Pekerja.findOne({
     where: {
       id: req.params.id,
@@ -174,6 +241,28 @@ export const deletePekerja = async (req, res) => {
     await Pekerja.destroy({
       where: {
         id: req.params.id,
+      },
+    });
+    res.status(200).json({ msg: "Pekerja Deleted Successfully" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const deletePekerjaByUuid = async (req, res) => {
+  const pekerja = await Pekerja.findOne({
+    where: {
+      uuid: req.params.uuid,
+    },
+  });
+  if (!pekerja) return res.status(404).json({ msg: "No Data Found" });
+
+  try {
+    const filepath = `./public/images/${pekerja.image}`;
+    fs.unlinkSync(filepath);
+    await Pekerja.destroy({
+      where: {
+        uuid: req.params.uuid,
       },
     });
     res.status(200).json({ msg: "Pekerja Deleted Successfully" });

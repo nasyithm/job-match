@@ -40,7 +40,7 @@ const Header = () => {
       if (response.data.pekerja !== null) {
         navigate(`/data/pekerja/${user.uuid}`);
       } else {
-        navigate("/");
+        navigate("/data/pekerja/baru");
       }
     } else if (user.role === "loker") {
       const response = await axios.get(
@@ -49,7 +49,7 @@ const Header = () => {
       if (response.data.loker !== null) {
         navigate(`/data/loker/${user.uuid}`);
       } else {
-        navigate("/");
+        navigate("/data/loker/baru");
       }
     }
 

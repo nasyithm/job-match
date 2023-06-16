@@ -3,12 +3,12 @@ import Layout from "./Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
-import LoginPage from "../components/LoginPage";
+import DataPekerjaEdit from "../components/DataPekerjaEdit";
 
-const Login = () => {
+const DataPekerjaEditPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -18,15 +18,12 @@ const Login = () => {
     if (isError) {
       navigate("/login");
     }
-    if (user && user.role !== "admin") {
-      navigate("/");
-    }
-  }, [isError, user, navigate]);
+  }, [isError, navigate]);
   return (
     <Layout>
-      <LoginPage />
+      <DataPekerjaEdit />
     </Layout>
   );
 };
 
-export default Login;
+export default DataPekerjaEditPage;

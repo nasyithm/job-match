@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Daftar = () => {
+const UserEdit = () => {
+  const { uuid } = useParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,17 +12,35 @@ const Daftar = () => {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const saveUser = async (e) => {
+  useEffect(() => {
+    const getUserByUuid = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/users/uuid/${uuid}`
+        );
+        setName(response.data.users.name);
+        setEmail(response.data.users.email);
+        setRole(response.data.users.role);
+      } catch (error) {
+        if (error.response) {
+          setMsg(error.response.data.msg);
+        }
+      }
+    };
+    getUserByUuid();
+  }, [uuid]);
+
+  const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/users`, {
+      await axios.patch(`http://localhost:5000/users/uuid/${uuid}`, {
         name: name,
         email: email,
         password: password,
         confPassword: confPassword,
         role: role,
       });
-      navigate("/login");
+      navigate("/profil");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -29,9 +48,13 @@ const Daftar = () => {
     }
   };
 
+  const cancel = () => {
+    navigate("/profil");
+  };
+
   return (
     <div>
-      <form onSubmit={saveUser}>
+      <form onSubmit={updateUser}>
         <p className="has-text-centered">{msg}</p>
         <div className="field">
           <label className="label">Nama</label>
@@ -82,21 +105,11 @@ const Daftar = () => {
           </div>
         </div>
         <div className="field">
-          <label className="label">Role</label>
-          <div className="control">
-            <div className="select is-fullwidth">
-              <select value={role} onChange={(e) => setRole(e.target.value)}>
-                <option value="pekerja" selected>Pekerja</option>
-                <option value="loker">Loker</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div className="field">
           <div className="control">
             <button type="submit" className="button is-success">
-              Daftar
+              Simpan
             </button>
+            <button onClick={cancel}>Batal</button>
           </div>
         </div>
       </form>
@@ -104,4 +117,4 @@ const Daftar = () => {
   );
 };
 
-export default Daftar;
+export default UserEdit;

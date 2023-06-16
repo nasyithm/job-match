@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DataLoker = () => {
+  const navigate = useNavigate();
   const { uuid } = useParams();
   const [job, setJob] = useState([]);
 
@@ -13,6 +14,10 @@ const DataLoker = () => {
   const getJob = async () => {
     const response = await axios.get(`http://localhost:5000/loker/uuid/${uuid}`);
     setJob(response.data.loker);
+  };
+
+  const editData = () => {
+    navigate(`/data/loker/edit/${uuid}`);
   };
 
   return (
@@ -47,6 +52,7 @@ const DataLoker = () => {
                 {job.contact}
               </p>
             </div>
+            <button onClick={editData}>Edit Data</button>
           </div>
         </article>
       </div>

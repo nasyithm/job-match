@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
-import Userlist from "../components/Userlist";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
+import DataLokerEdit from "../components/DataLokerEdit";
 
-const Users = () => {
+const DataLokerEditPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -16,17 +16,14 @@ const Users = () => {
 
   useEffect(() => {
     if (isError) {
-      navigate("/");
+      navigate("/login");
     }
-    if (user && user.role !== "admin") {
-      navigate("/dashboard");
-    }
-  }, [isError, user, navigate]);
+  }, [isError, navigate]);
   return (
     <Layout>
-      <Userlist />
+      <DataLokerEdit />
     </Layout>
   );
 };
 
-export default Users;
+export default DataLokerEditPage;
