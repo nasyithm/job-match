@@ -25,47 +25,49 @@ const Login = () => {
   };
 
   return (
-    <div id="main-content">
-      <article className="content">
-        <h2 className="content__title">Login</h2>
-        <form onSubmit={Auth} className="box">
-          {isError && <p className="has-text-centered">{message}</p>}
-          <div className="field">
-            <label className="label">Email</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-              />
+    <article className="content">
+      <h2 className="content-title">Login</h2>
+      <div className="container">
+        <div className="detail-content">
+          <form onSubmit={Auth} className="box">
+            {isError && <p className="text red">{message}</p>}
+            <div className="input-container">
+              <label className="text">Email</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                />
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Password</label>
-            <div className="control">
-              <input
-                type="password"
-                className="input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="******"
-              />
+            <div className="input-container">
+              <label className="text">Password</label>
+              <div className="control">
+                <input
+                  type="password"
+                  className="input"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="******"
+                />
+              </div>
             </div>
-          </div>
-          <div className="field mt-5">
-            <button type="submit" className="button is-success is-fullwidth">
-              {isLoading ? "Loading..." : "Login"}
-            </button>
-          </div>
-          <div>
-            <p>Sudah punya akun?</p>
-            <Link to={"/daftar"}>Daftar</Link>
-          </div>
-        </form>
-      </article>
-    </div>
+            <div className="button-container">
+              <button type="submit" className="button-blue">
+                {isLoading ? "Loading..." : "Login"}
+              </button>
+            </div>
+            <div>
+              <p className="text">Sudah punya akun?</p>
+              <Link className="text blue" to={"/daftar"}>Daftar</Link>
+            </div>
+          </form>
+        </div>
+      </div>
+    </article>
   );
 };
 

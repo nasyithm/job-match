@@ -26,20 +26,20 @@ const Profil = () => {
   const handleDelete = async () => {
     if (user.role === "pekerja") {
       try {
-        await axios.delete(`https://job-match-api.up.railway.app/pekerja/uuid/${user.uuid}`);
+        await axios.delete(`http://localhost:5000/pekerja/uuid/${user.uuid}`);
       } catch (error) {
         console.log(error);
       }
     } else if (user.role === "loker") {
       try {
-        await axios.delete(`https://job-match-api.up.railway.app/loker/uuid/${user.uuid}`);
+        await axios.delete(`http://localhost:5000/loker/uuid/${user.uuid}`);
       } catch (error) {
         console.log(error);
       }
     }
 
     try {
-      await axios.delete(`https://job-match-api.up.railway.app/users/uuid/${user.uuid}`);
+      await axios.delete(`http://localhost:5000/users/uuid/${user.uuid}`);
     } catch (error) {
       console.log(error);
     }
@@ -58,35 +58,31 @@ const Profil = () => {
   );
 
   const editUser = () => {
-    navigate(`/user/edit/${user.uuid}`);
+    navigate(`/profil/edit/${user.uuid}`);
   };
 
   return (
-    <div>
-      <div id="main-content">
-        <article className="content">
-          <h2 className="content__title">Profil</h2>
-          <div className="card">
-            <div className="card__content">
-              <p className="card__name">
-                <b>Nama : </b>
-                {user.name}
-              </p>
-              <p className="card__gender">
-                <b>Email : </b>
-                {user.email}
-              </p>
-              <p className="card__gender">
-                <b>Role : </b>
-                {user.role}
-              </p>
-            </div>
+    <article className="content">
+      <h2 className="content-title">Profil</h2>
+      <div className="container">
+        <div className="detail-content">
+          <p className="subtitle">Nama</p>
+          <p className="text">{user.name}</p>
+          <p className="subtitle">Email</p>
+          <p className="text">{user.email}</p>
+          <p className="subtitle">Role</p>
+          <p className="text">{user.role}</p>
+          <div className="button-container">
+            <button className="button-yellow" onClick={editUser}>
+              Edit Profil
+            </button>
+            <button className="button-red" onClick={confirmDelete}>
+              Hapus Akun
+            </button>
           </div>
-          <button onClick={editUser}>Edit Profil</button>
-          <button onClick={confirmDelete}>Hapus Akun</button>
-        </article>
+        </div>
       </div>
-    </div>
+    </article>
   );
 };
 

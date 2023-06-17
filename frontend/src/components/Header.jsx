@@ -35,7 +35,7 @@ const Header = () => {
   const handleMenuTwo = async () => {
     if (user.role === "pekerja") {
       const response = await axios.get(
-        `https://job-match-api.up.railway.app/pekerja/uuid/${user.uuid}`
+        `http://localhost:5000/pekerja/uuid/${user.uuid}`
       );
       if (response.data.pekerja !== null) {
         navigate(`/data/pekerja/${user.uuid}`);
@@ -44,7 +44,7 @@ const Header = () => {
       }
     } else if (user.role === "loker") {
       const response = await axios.get(
-        `https://job-match-api.up.railway.app/loker/uuid/${user.uuid}`
+        `http://localhost:5000/loker/uuid/${user.uuid}`
       );
       if (response.data.loker !== null) {
         navigate(`/data/loker/${user.uuid}`);
@@ -58,25 +58,25 @@ const Header = () => {
 
   return (
     <header className="header">
-      <NavLink to="#" id="menu" className="header__menu" onClick={handleToggle}>
+      <NavLink to="#" id="menu" className="header-menu" onClick={handleToggle}>
         ☰
       </NavLink>
-      <div className="header__logo">
+      <div className="header-logo">
         <img src="icons/icon-32.png" alt="" />
-        <h1 className="header__title">Job Match</h1>
+        <h1 className="header-title">Job Match</h1>
       </div>
       <nav id="drawer" className={isActive ? "nav open" : "nav"}>
-        <ul className="nav__list">
-          <li className="nav__item">
+        <ul className="nav-list">
+          <li className="nav-item">
             <NavLink to={"/"}>Home</NavLink>
           </li>
-          <li className="nav__item">
-            <NavLink to={"/lowongankerja"}>Lowongan Kerja</NavLink>
+          <li className="nav-item">
+            <NavLink to={"/loker"}>Loker</NavLink>
           </li>
-          <li className="nav__item">
-            <NavLink to={"/tenagakerja"}>Tenaga Kerja</NavLink>
+          <li className="nav-item">
+            <NavLink to={"/pekerja"}>Pekerja</NavLink>
           </li>
-          <li className="nav__item">
+          <li className="nav-item">
             {user ? (
               <div className="dropdown">
                 <NavLink onClick={handleOpen}>{user.name}</NavLink>

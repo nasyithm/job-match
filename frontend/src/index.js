@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import axios from "axios";
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 axios.defaults.withCredentials = true;
 

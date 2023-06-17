@@ -8,7 +8,7 @@ import Login from "../components/Login";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -18,10 +18,7 @@ const LoginPage = () => {
     if (isError) {
       navigate("/login");
     }
-    if (user && user.role !== "admin") {
-      navigate("/");
-    }
-  }, [isError, user, navigate]);
+  }, [isError, navigate]);
   return (
     <Layout>
       <Login />

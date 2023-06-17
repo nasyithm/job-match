@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const DataLoker = () => {
-  const navigate = useNavigate();
-  const { uuid } = useParams();
+const DetailLoker = () => {
+  const { id } = useParams();
   const [job, setJob] = useState([]);
 
   useEffect(() => {
@@ -12,19 +11,13 @@ const DataLoker = () => {
   }, []);
 
   const getJob = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/loker/uuid/${uuid}`
-    );
+    const response = await axios.get(`http://localhost:5000/loker/${id}`);
     setJob(response.data.loker);
-  };
-
-  const editData = () => {
-    navigate(`/data/loker/edit/${uuid}`);
   };
 
   return (
     <article className="content">
-      <h2 className="content-title">Data Saya</h2>
+      <h2 className="content-title">Detail Lowongan Kerja</h2>
       <div className="detail-container">
         <div className="container">
           <div className="detail-image-container">
@@ -46,11 +39,6 @@ const DataLoker = () => {
             <p className="text">{job.description}</p>
             <p className="subtitle">Kontak</p>
             <p className="text">{job.contact}</p>
-            <div className="button-container">
-              <button className="button-yellow" onClick={editData}>
-                Edit Data
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -58,4 +46,4 @@ const DataLoker = () => {
   );
 };
 
-export default DataLoker;
+export default DetailLoker;

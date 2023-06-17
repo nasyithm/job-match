@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
-import ListLowonganKerja from "../components/ListLowonganKerja";
+import ListPekerja from "../components/ListPekerja";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
 
-const LowonganKerja = () => {
+const Pekerja = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -21,9 +21,9 @@ const LowonganKerja = () => {
   }, [isError, navigate]);
   return (
     <Layout>
-      <ListLowonganKerja />
+      <ListPekerja />
     </Layout>
   );
 };
 
-export default LowonganKerja;
+export default Pekerja;

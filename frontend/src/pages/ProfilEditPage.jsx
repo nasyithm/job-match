@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
-import ListTenagaKerja from "../components/ListTenagaKerja";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
+import ProfilEdit from "../components/ProfilEdit";
 
-const TenagaKerja = () => {
+const ProfilEditPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -21,9 +21,9 @@ const TenagaKerja = () => {
   }, [isError, navigate]);
   return (
     <Layout>
-      <ListTenagaKerja />
+      <ProfilEdit />
     </Layout>
   );
 };
 
-export default TenagaKerja;
+export default ProfilEditPage;

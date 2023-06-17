@@ -1,27 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Daftar = () => {
+const ProfilEdit = () => {
+  const { uuid } = useParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
-  const [role, setRole] = useState("pekerja");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const saveUser = async (e) => {
+  useEffect(() => {
+    const getUserByUuid = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/users/uuid/${uuid}`
+        );
+        setName(response.data.users.name);
+        setEmail(response.data.users.email);
+      } catch (error) {
+        if (error.response) {
+          setMsg(error.response.data.msg);
+        }
+      }
+    };
+    getUserByUuid();
+  }, [uuid]);
+
+  const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/users`, {
+      await axios.patch(`http://localhost:5000/users/uuid/${uuid}`, {
         name: name,
         email: email,
         password: password,
         confPassword: confPassword,
-        role: role,
       });
-      navigate("/login");
+      navigate("/profil");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -29,12 +45,16 @@ const Daftar = () => {
     }
   };
 
+  const cancel = () => {
+    navigate("/profil");
+  };
+
   return (
     <article className="content">
-      <h2 className="content-title">Daftar Akun</h2>
+      <h2 className="content-title">Edit Profil</h2>
       <div className="container">
         <div className="detail-content">
-          <form onSubmit={saveUser}>
+          <form onSubmit={updateUser}>
             <p className="text red">{msg}</p>
             <div className="input-container">
               <label className="text">Nama</label>
@@ -84,20 +104,12 @@ const Daftar = () => {
                 />
               </div>
             </div>
-            <div className="input-container">
-              <label className="text">Role</label>
-              <div className="control">
-                <select className="input input-select" value={role} onChange={(e) => setRole(e.target.value)}>
-                  <option value="pekerja" selected>
-                    Pekerja
-                  </option>
-                  <option value="loker">Loker</option>
-                </select>
-              </div>
-            </div>
             <div className="button-container">
-              <button className="button-blue" type="submit">
-                Daftar
+              <button type="submit" className="button-green">
+                Simpan
+              </button>
+              <button className="button-blue" onClick={cancel}>
+                Batal
               </button>
             </div>
           </form>
@@ -107,4 +119,4 @@ const Daftar = () => {
   );
 };
 
-export default Daftar;
+export default ProfilEdit;

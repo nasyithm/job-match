@@ -3,9 +3,9 @@ import Layout from "./Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
-import DetailLowonganKerja from "../components/DetailLowonganKerja";
+import DetailPekerja from "../components/DetailPekerja";
 
-const DetailLowonganKerjaPage = () => {
+const DetailPekerjaPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -21,9 +21,9 @@ const DetailLowonganKerjaPage = () => {
   }, [isError, navigate]);
   return (
     <Layout>
-      <DetailLowonganKerja />
+      <DetailPekerja />
     </Layout>
   );
 };
 
-export default DetailLowonganKerjaPage;
+export default DetailPekerjaPage;

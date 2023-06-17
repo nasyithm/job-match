@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const DataPekerja = () => {
-  const navigate = useNavigate();
-  const { uuid } = useParams();
+const DetailPekerja = () => {
+  const { id } = useParams();
   const [worker, setWorker] = useState([]);
 
   useEffect(() => {
@@ -12,19 +11,13 @@ const DataPekerja = () => {
   }, []);
 
   const getWorker = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/pekerja/uuid/${uuid}`
-    );
+    const response = await axios.get(`http://localhost:5000/pekerja/${id}`);
     setWorker(response.data.pekerja);
-  };
-
-  const editData = () => {
-    navigate(`/data/pekerja/edit/${uuid}`);
   };
 
   return (
     <article className="content">
-      <h2 className="content-title">Data Saya</h2>
+      <h2 className="content-title">Detail Pekerja</h2>
       <div className="detail-container">
         <div className="container">
           <div className="detail-image-container">
@@ -58,11 +51,6 @@ const DataPekerja = () => {
             <p className="text">{worker.email}</p>
             <p className="subtitle">Nomor Handphone</p>
             <p className="text">{worker.phoneNumber}</p>
-            <div className="button-container">
-              <button className="button-yellow" onClick={editData}>
-                Edit Data
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -70,4 +58,4 @@ const DataPekerja = () => {
   );
 };
 
-export default DataPekerja;
+export default DetailPekerja;

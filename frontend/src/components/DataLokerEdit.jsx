@@ -23,7 +23,7 @@ const DataLokerEdit = () => {
     const getLokerByUuid = async () => {
       try {
         const response = await axios.get(
-          `https://job-match-api.up.railway.app/loker/uuid/${uuid}`
+          `http://localhost:5000/loker/uuid/${uuid}`
         );
         setName(response.data.loker.name);
         setLocation(response.data.loker.location);
@@ -47,7 +47,7 @@ const DataLokerEdit = () => {
     formData.append("contact", contact);
     formData.append("file", file);
     try {
-      await axios.patch(`https://job-match-api.up.railway.app/loker/uuid/${uuid}`, formData, {
+      await axios.patch(`http://localhost:5000/loker/uuid/${uuid}`, formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
@@ -63,92 +63,88 @@ const DataLokerEdit = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={saveLoker}>
-        <p className="has-text-centered">{msg}</p>
-        <div className="field">
-          <label className="label">Nama</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nama"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Lokasi</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              placeholder="Lokasi"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Deskripsi</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Deskripsi"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Kontak</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-              placeholder="Kontak"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Gambar</label>
-          <div className="control">
-            <div className="file">
-              <label className="file-label">
+    <article className="content">
+      <h2 className="content-title">Edit Data Saya</h2>
+      <div className="container">
+        <div className="detail-content">
+          <form onSubmit={saveLoker}>
+            <p className="text red">{msg}</p>
+            <div className="input-container">
+              <label className="text">Nama</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Nama"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Lokasi</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="Lokasi"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Deskripsi</label>
+              <div className="control">
+                <textarea
+                  className="input"
+                  rows={4}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Deskripsi"
+                ></textarea>
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Kontak</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                  placeholder="Kontak"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Gambar</label>
+              <div className="input">
                 <input
                   type="file"
-                  className="file-input"
+                  accept="image/*"
+                  className="input-file"
                   onChange={loadImage}
                 />
-                <span className="file-cta">
-                  <span className="file-label">Pilih gambar...</span>
-                </span>
-              </label>
+                {preview ? (
+                  <img className="image-preview" src={preview} alt="Preview" />
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
-          </div>
+            <div className="button-container">
+              <button type="submit" className="button-green">
+                Simpan
+              </button>
+              <button className="button-blue" onClick={cancel}>
+                Batal
+              </button>
+            </div>
+          </form>
         </div>
-        {preview ? (
-          <figure className="image is-128x128">
-            <img src={preview} alt="Preview" />
-          </figure>
-        ) : (
-          ""
-        )}
-
-        <div className="field">
-          <div className="control">
-            <button type="submit" className="button is-success">
-              Simpan
-            </button>
-            <button onClick={cancel}>Batal</button>
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </article>
   );
 };
 

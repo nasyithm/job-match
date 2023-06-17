@@ -3,9 +3,9 @@ import Layout from "./Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
-import DetailTenagaKerja from "../components/DetailTenagaKerja";
+import DetailLoker from "../components/DetailLoker";
 
-const DetailTenagaKerjaPage = () => {
+const DetailLokerPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -21,9 +21,9 @@ const DetailTenagaKerjaPage = () => {
   }, [isError, navigate]);
   return (
     <Layout>
-      <DetailTenagaKerja />
+      <DetailLoker />
     </Layout>
   );
 };
 
-export default DetailTenagaKerjaPage;
+export default DetailLokerPage;

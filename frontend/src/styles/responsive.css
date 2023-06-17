@@ -3,12 +3,12 @@
     justify-content: space-between;
   }
 
-  .header .header__menu {
+  .header-menu {
     padding: 7px 15px;
     font-size: 25px;
   }
 
-  .header .nav {
+  .nav {
     z-index: 10;
     margin-top: 270px;
     left: 0;
@@ -20,21 +20,21 @@
     transition: transform 0.3s ease;
   }
 
-  .header .nav .nav__list {
+  .nav-list {
     flex-direction: column;
   }
 
-  .header .nav .nav__list .nav__item {
+  .nav-item {
     padding: 15px;
     border-bottom: 1px solid #e0e0e0;
     text-align: center;
   }
 
-  .header .nav .nav__list .nav__item a {
+  .nav-item a {
     font-size: 16px;
   }
 
-  .header .open {
+  .open {
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
@@ -45,37 +45,25 @@
     flex-direction: row;
   }
 
-  .header .header__menu {
+  .header-menu {
     display: none;
   }
 
-  .header .nav {
+  .nav {
     display: flex;
   }
 
-  .header .nav .nav__list {
+  .nav-list {
     gap: 0.5rem;
   }
 
-  .header .nav .nav__list .nav__item a {
-    padding: 10px 15px;
+  .nav-item a {
+    padding: 5px;
     font-size: 16px;
   }
 
   .hero {
     min-height: 300px;
-  }
-
-  .hero .hero__title {
-    font-size: 30px;
-  }
-
-  .hero .hero__desc {
-    font-size: 16px;
-  }
-
-  .hero .hero__tagline {
-    font-size: 18px;
   }
 
   .content {
@@ -84,44 +72,27 @@
 }
 
 @media screen and (min-width: 600px) {
-  .header .nav .nav__list {
+  .nav-list {
     gap: 0.75rem;
   }
 
-  .header .nav .nav__list .nav__item a {
-    padding: 10px 15px;
+  .nav-item a {
+    padding: 10px;
     font-size: 18px;
   }
 
-  .content .content__list {
+  .content-list {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .content .content__list .card .card__city {
-    width: 40%;
   }
 }
 
 @media screen and (min-width: 700px) {
-  .header .nav .nav__list .nav__item a {
-    padding: 10px 15px;
-    font-size: 18px;
-  }
-
   .hero {
     min-height: 350px;
   }
 
-  .hero .hero__title {
-    font-size: 35px;
-  }
-
-  .hero .hero__desc {
-    font-size: 18px;
-  }
-
-  .hero .hero__tagline {
-    font-size: 20px;
+  .detail-container {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -130,7 +101,7 @@
     margin: 10px 40px;
   }
 
-  .content .content__list {
+  .content-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -142,9 +113,6 @@
 }
 
 @media screen and (min-width: 1100px) {
-  .content .content__list .card .card__city {
-    width: 30%;
-  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -154,11 +122,7 @@
 }
 
 @media screen and (min-width: 1400px) {
-  .content .content__list {
+  .content-list {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  
-  .content .content__list .card .card__city {
-    width: 40%;
   }
 }

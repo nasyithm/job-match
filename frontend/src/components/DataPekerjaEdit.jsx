@@ -6,12 +6,13 @@ const DataPekerjaEdit = () => {
   const { uuid } = useParams();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [placeDateBirth, setPlaceDateBirth] = useState("");
+  const [dateBirth, setDateBirth] = useState("");
   const [religion, setReligion] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Pria");
   const [skill, setSkill] = useState("");
   const [education, setEducation] = useState("");
   const [description, setDescription] = useState("");
+  const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [msg, setMsg] = useState("");
   const [file, setFile] = useState("");
@@ -28,16 +29,17 @@ const DataPekerjaEdit = () => {
     const getPekerjaByUuid = async () => {
       try {
         const response = await axios.get(
-          `https://job-match-api.up.railway.app/pekerja/uuid/${uuid}`
+          `http://localhost:5000/pekerja/uuid/${uuid}`
         );
         setName(response.data.pekerja.name);
         setAddress(response.data.pekerja.address);
-        setPlaceDateBirth(response.data.pekerja.placeDateBirth);
+        setDateBirth(response.data.pekerja.dateBirth);
         setReligion(response.data.pekerja.religion);
         setGender(response.data.pekerja.gender);
         setSkill(response.data.pekerja.skill);
         setEducation(response.data.pekerja.education);
         setDescription(response.data.pekerja.description);
+        setEmail(response.data.pekerja.email);
         setPhoneNumber(response.data.pekerja.phoneNumber);
       } catch (error) {
         if (error.response) {
@@ -53,17 +55,18 @@ const DataPekerjaEdit = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("address", address);
-    formData.append("placeDateBirth", placeDateBirth);
+    formData.append("dateBirth", dateBirth);
     formData.append("religion", religion);
     formData.append("gender", gender);
     formData.append("skill", skill);
     formData.append("education", education);
     formData.append("description", description);
+    formData.append("email", email);
     formData.append("phoneNumber", phoneNumber);
     formData.append("file", file);
     try {
       await axios.patch(
-        `https://job-match-api.up.railway.app/pekerja/uuid/${uuid}`,
+        `http://localhost:5000/pekerja/uuid/${uuid}`,
         formData,
         {
           headers: {
@@ -78,158 +81,167 @@ const DataPekerjaEdit = () => {
   };
 
   const cancel = () => {
-    navigate(`/data/loker/${uuid}`);
+    navigate(`/data/pekerja/${uuid}`);
   };
 
   return (
-    <div>
-      <form onSubmit={savePekerja}>
-        <p className="has-text-centered">{msg}</p>
-        <div className="field">
-          <label className="label">Nama</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nama"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Alamat</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Alamat"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Tempat Tanggal Lahir</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={placeDateBirth}
-              onChange={(e) => setPlaceDateBirth(e.target.value)}
-              placeholder="Tempat Tanggal Lahir"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Agama</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={religion}
-              onChange={(e) => setReligion(e.target.value)}
-              placeholder="Agama"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Jenis Kelamin</label>
-          <div className="control">
-            <div className="select is-fullwidth">
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <option value="Pria">Pria</option>
-                <option value="Wanita">Wanita</option>
-              </select>
+    <article className="content">
+      <h2 className="content-title">Edit Data Saya</h2>
+      <div className="container">
+        <div className="detail-content">
+          <form onSubmit={savePekerja}>
+            <p className="text red">{msg}</p>
+            <div className="input-container">
+              <label className="text">Nama</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Nama"
+                />
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Skill</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={skill}
-              onChange={(e) => setSkill(e.target.value)}
-              placeholder="Skill"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Pendidikan</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={education}
-              onChange={(e) => setEducation(e.target.value)}
-              placeholder="Pendidikan"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Deskripsi</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Deskripsi"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">No Handphone</label>
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder="No Handphone"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Gambar</label>
-          <div className="control">
-            <div className="file">
-              <label className="file-label">
+            <div className="input-container">
+              <label className="text">Alamat</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Alamat"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Tanggal Lahir</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={dateBirth}
+                  onChange={(e) => setDateBirth(e.target.value)}
+                  placeholder="Tanggal Lahir"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Agama</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={religion}
+                  onChange={(e) => setReligion(e.target.value)}
+                  placeholder="Agama"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Jenis Kelamin</label>
+              <div className="control">
+                <select
+                  className="input input-select"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <option value="Pria" selected>
+                    Pria
+                  </option>
+                  <option value="Wanita">Wanita</option>
+                </select>
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Skill</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={skill}
+                  onChange={(e) => setSkill(e.target.value)}
+                  placeholder="Skill"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Pendidikan</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={education}
+                  onChange={(e) => setEducation(e.target.value)}
+                  placeholder="Pendidikan"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Deskripsi</label>
+              <div className="control">
+                <textarea
+                  className="input"
+                  rows={4}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Deskripsi"
+                ></textarea>
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Email</label>
+              <div className="control">
+                <input
+                  type="email"
+                  className="input"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Nomor Handphone</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="Nomor Handphone"
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label className="text">Gambar</label>
+              <div className="input">
                 <input
                   type="file"
-                  className="file-input"
+                  accept="image/*"
+                  className="input-file"
                   onChange={loadImage}
                 />
-                <span className="file-cta">
-                  <span className="file-label">Pilih gambar...</span>
-                </span>
-              </label>
+                {preview ? (
+                  <img className="image-preview" src={preview} alt="Preview" />
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
-          </div>
+            <div className="button-container">
+              <button type="submit" className="button-green">
+                Simpan
+              </button>
+              <button className="button-blue" onClick={cancel}>
+                Batal
+              </button>
+            </div>
+          </form>
         </div>
-        {preview ? (
-          <figure className="image is-128x128">
-            <img src={preview} alt="Preview" />
-          </figure>
-        ) : (
-          ""
-        )}
-
-        <div className="field">
-          <div className="control">
-            <button type="submit" className="button is-success">
-              Simpan
-            </button>
-            <button onClick={cancel}>Batal</button>
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </article>
   );
 };
 

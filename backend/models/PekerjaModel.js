@@ -10,7 +10,7 @@ const Pekerja = db.define(
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     address: DataTypes.STRING,
-    placeDateBirth: DataTypes.STRING,
+    dateBirth: DataTypes.STRING,
     religion: DataTypes.STRING,
     gender: DataTypes.STRING,
     skill: DataTypes.STRING,

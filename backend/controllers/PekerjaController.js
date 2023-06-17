@@ -44,7 +44,7 @@ export const savePekerja = (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const address = req.body.address;
-  const placeDateBirth = req.body.placeDateBirth;
+  const dateBirth = req.body.dateBirth;
   const religion = req.body.religion;
   const gender = req.body.gender;
   const skill = req.body.skill;
@@ -72,7 +72,7 @@ export const savePekerja = (req, res) => {
         name: name,
         email: email,
         address: address,
-        placeDateBirth: placeDateBirth,
+        dateBirth: dateBirth,
         religion: religion,
         gender: gender,
         skill: skill,
@@ -122,7 +122,7 @@ export const updatePekerjaById = async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const address = req.body.address;
-  const placeDateBirth = req.body.placeDateBirth;
+  const dateBirth = req.body.dateBirth;
   const religion = req.body.religion;
   const gender = req.body.gender;
   const skill = req.body.skill;
@@ -138,7 +138,7 @@ export const updatePekerjaById = async (req, res) => {
         name: name,
         email: email,
         address: address,
-        placeDateBirth: placeDateBirth,
+        dateBirth: dateBirth,
         religion: religion,
         gender: gender,
         skill: skill,
@@ -191,7 +191,7 @@ export const updatePekerjaByUuid = async (req, res) => {
   }
   const name = req.body.name;
   const address = req.body.address;
-  const placeDateBirth = req.body.placeDateBirth;
+  const dateBirth = req.body.dateBirth;
   const religion = req.body.religion;
   const gender = req.body.gender;
   const skill = req.body.skill;
@@ -205,7 +205,7 @@ export const updatePekerjaByUuid = async (req, res) => {
       {
         name: name,
         address: address,
-        placeDateBirth: placeDateBirth,
+        dateBirth: dateBirth,
         religion: religion,
         gender: gender,
         skill: skill,

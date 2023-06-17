@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import TenagaKerja from "./pages/TenagaKerja";
-import LowonganKerja from "./pages/LowonganKerja";
-import DetailTenagaKerjaPage from "./pages/DetailTenagaKerjaPage";
-import DetailLowonganKerjaPage from "./pages/DetailLowonganKerjaPage";
+import PekerjaPage from "./pages/PekerjaPage";
+import LokerPage from "./pages/LokerPage";
+import DetailPekerjaPage from "./pages/DetailPekerjaPage";
+import DetailLokerPage from "./pages/DetailLokerPage";
 import HomePage from "./pages/HomePage";
 import DaftarPage from "./pages/DaftarPage";
 import ProfilPage from "./pages/ProfilPage";
@@ -13,28 +13,28 @@ import DataPekerjaBaruPage from "./pages/DataPekerjaBaruPage";
 import DataLokerBaruPage from "./pages/DataLokerBaruPage";
 import DataPekerjaEditPage from "./pages/DataPekerjaEditPage";
 import DataLokerEditPage from "./pages/DataLokerEditPage";
-import UserEditPage from "./pages/UserEditPage";
+import ProfilEditPage from "./pages/ProfilEditPage";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/daftar" element={<DaftarPage />} />
-          <Route path="/" element={<HomePage />} />
           <Route path="/profil" element={<ProfilPage />} />
-          <Route path="/user/edit/:uuid" element={<UserEditPage />} />
-          <Route path="/data/loker/:uuid" element={<DataLokerPage />} />
-          <Route path="/data/loker/baru" element={<DataLokerBaruPage />} />
-          <Route path="/data/loker/edit/:uuid" element={<DataLokerEditPage />} />
+          <Route path="/profil/edit/:uuid" element={<ProfilEditPage />} />
+          <Route path="/pekerja" element={<PekerjaPage />} />
+          <Route path="/pekerja/detail/:id" element={<DetailPekerjaPage />} />
+          <Route path="/loker" element={<LokerPage/>} />
+          <Route path="/loker/detail/:id" element={<DetailLokerPage />} />
           <Route path="/data/pekerja/:uuid" element={<DataPekerjaPage />} />
           <Route path="/data/pekerja/baru" element={<DataPekerjaBaruPage />} />
           <Route path="/data/pekerja/edit/:uuid" element={<DataPekerjaEditPage />} />
-          <Route path="/tenagakerja" element={<TenagaKerja />} />
-          <Route path="/tenagakerja/detail/:id" element={<DetailTenagaKerjaPage />} />
-          <Route path="/lowongankerja" element={<LowonganKerja/>} />
-          <Route path="/lowongankerja/detail/:id" element={<DetailLowonganKerjaPage />} />
+          <Route path="/data/loker/:uuid" element={<DataLokerPage />} />
+          <Route path="/data/loker/baru" element={<DataLokerBaruPage />} />
+          <Route path="/data/loker/edit/:uuid" element={<DataLokerEditPage />} />
         </Routes>
       </BrowserRouter>
     </div>

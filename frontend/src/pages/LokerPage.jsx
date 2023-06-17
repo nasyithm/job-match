@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
+import ListLoker from "../components/ListLoker";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
-import UserEdit from "../components/UserEdit";
 
-const UserEditPage = () => {
+const Loker = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -21,9 +21,9 @@ const UserEditPage = () => {
   }, [isError, navigate]);
   return (
     <Layout>
-      <UserEdit />
+      <ListLoker />
     </Layout>
   );
 };
 
-export default UserEditPage;
+export default Loker;
