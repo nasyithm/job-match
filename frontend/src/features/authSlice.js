@@ -16,6 +16,9 @@ export const LoginUser = createAsyncThunk(
       const response = await axios.post(
         "https://job-match-api.up.railway.app/login",
         {
+          config: { withCredentials: true },
+        },
+        {
           email: user.email,
           password: user.password,
         }
@@ -32,7 +35,12 @@ export const LoginUser = createAsyncThunk(
 
 export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
   try {
-    const response = await axios.get("https://job-match-api.up.railway.app/me");
+    const response = await axios.get(
+      "https://job-match-api.up.railway.app/me",
+      {
+        config: { withCredentials: true },
+      }
+    );
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -43,7 +51,9 @@ export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
 });
 
 export const LogOut = createAsyncThunk("user/LogOut", async () => {
-  await axios.delete("https://job-match-api.up.railway.app/logout");
+  await axios.delete("https://job-match-api.up.railway.app/logout", {
+    config: { withCredentials: true },
+  });
 });
 
 export const authSlice = createSlice({
