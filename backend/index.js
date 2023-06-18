@@ -30,7 +30,7 @@ app.use(FileUpload());
 // Use the session middleware
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: "jobmatchsecret123#",
     resave: false,
     saveUninitialized: true,
     store: store,
@@ -40,6 +40,7 @@ app.use(
     },
   })
 );
+app.set("trust proxy", 1);
 app.use(express.static("public"));
 app.use(PekerjaRoute);
 app.use(LokerRoute);
