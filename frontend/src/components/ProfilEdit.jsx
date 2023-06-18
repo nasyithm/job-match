@@ -15,7 +15,7 @@ const ProfilEdit = () => {
     const getUserByUuid = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/users/uuid/${uuid}`
+          `https://job-match-api.up.railway.app/users/uuid/${uuid}`
         );
         setName(response.data.users.name);
         setEmail(response.data.users.email);
@@ -31,12 +31,15 @@ const ProfilEdit = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/uuid/${uuid}`, {
-        name: name,
-        email: email,
-        password: password,
-        confPassword: confPassword,
-      });
+      await axios.patch(
+        `https://job-match-api.up.railway.app/users/uuid/${uuid}`,
+        {
+          name: name,
+          email: email,
+          password: password,
+          confPassword: confPassword,
+        }
+      );
       navigate("/profil");
     } catch (error) {
       if (error.response) {

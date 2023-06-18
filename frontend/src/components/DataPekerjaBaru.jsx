@@ -16,6 +16,7 @@ const DataPekerjaBaru = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const loadImage = (e) => {
@@ -40,14 +41,18 @@ const DataPekerjaBaru = () => {
     formData.append("phoneNumber", phoneNumber);
     formData.append("file", file);
     try {
-      await axios.post("http://localhost:5000/pekerja", formData, {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://job-match-api.up.railway.app/pekerja",
+        formData,
+        {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }
+      );
       navigate(`/data/pekerja/${user.uuid}`);
     } catch (error) {
-      console.log(error);
+      setMsg(error.response.data.msg);
     }
   };
 
@@ -57,6 +62,7 @@ const DataPekerjaBaru = () => {
       <div className="container">
         <div className="detail-content">
           <form onSubmit={savePekerja}>
+            <p className="text red">{msg}</p>
             <div className="input-container">
               <label className="text">Nama</label>
               <div className="control">
@@ -108,17 +114,16 @@ const DataPekerjaBaru = () => {
             <div className="input-container">
               <label className="text">Jenis Kelamin</label>
               <div className="control">
-                <div className="input input-select">
-                  <select
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                  >
-                    <option value="Pria" selected>
-                      Pria
-                    </option>
-                    <option value="Wanita">Wanita</option>
-                  </select>
-                </div>
+                <select
+                  className="input input-select"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <option value="Pria" selected>
+                    Pria
+                  </option>
+                  <option value="Wanita">Wanita</option>
+                </select>
               </div>
             </div>
             <div className="input-container">

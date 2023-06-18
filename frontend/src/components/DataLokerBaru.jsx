@@ -11,6 +11,7 @@ const DataLokerBaru = () => {
   const [contact, setContact] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const loadImage = (e) => {
@@ -29,14 +30,14 @@ const DataLokerBaru = () => {
     formData.append("contact", contact);
     formData.append("file", file);
     try {
-      await axios.post("http://localhost:5000/loker", formData, {
+      await axios.post("https://job-match-api.up.railway.app/loker", formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
       });
       navigate(`/data/loker/${user.uuid}`);
     } catch (error) {
-      console.log(error);
+      setMsg(error.response.data.msg);
     }
   };
 
@@ -46,6 +47,7 @@ const DataLokerBaru = () => {
       <div className="container">
         <div className="detail-content">
           <form onSubmit={saveLoker}>
+            <p className="text red">{msg}</p>
             <div className="input-container">
               <label className="text">Nama</label>
               <div className="control">

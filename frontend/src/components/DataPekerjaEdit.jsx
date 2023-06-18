@@ -29,7 +29,7 @@ const DataPekerjaEdit = () => {
     const getPekerjaByUuid = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/pekerja/uuid/${uuid}`
+          `https://job-match-api.up.railway.app/pekerja/uuid/${uuid}`
         );
         setName(response.data.pekerja.name);
         setAddress(response.data.pekerja.address);
@@ -66,7 +66,7 @@ const DataPekerjaEdit = () => {
     formData.append("file", file);
     try {
       await axios.patch(
-        `http://localhost:5000/pekerja/uuid/${uuid}`,
+        `https://job-match-api.up.railway.app/pekerja/uuid/${uuid}`,
         formData,
         {
           headers: {
@@ -76,7 +76,7 @@ const DataPekerjaEdit = () => {
       );
       navigate(`/data/pekerja/${uuid}`);
     } catch (error) {
-      console.log(error);
+      setMsg(error.response.data.msg);
     }
   };
 

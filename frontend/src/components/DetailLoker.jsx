@@ -11,7 +11,9 @@ const DetailLoker = () => {
   }, []);
 
   const getJob = async () => {
-    const response = await axios.get(`http://localhost:5000/loker/${id}`);
+    const response = await axios.get(
+      `https://job-match-api.up.railway.app/loker/${id}`
+    );
     setJob(response.data.loker);
   };
 

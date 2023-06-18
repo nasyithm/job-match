@@ -13,7 +13,7 @@ const DataPekerja = () => {
 
   const getWorker = async () => {
     const response = await axios.get(
-      `http://localhost:5000/pekerja/uuid/${uuid}`
+      `https://job-match-api.up.railway.app/pekerja/uuid/${uuid}`
     );
     setWorker(response.data.pekerja);
   };

@@ -13,7 +13,7 @@ const DataLoker = () => {
 
   const getJob = async () => {
     const response = await axios.get(
-      `http://localhost:5000/loker/uuid/${uuid}`
+      `https://job-match-api.up.railway.app/loker/uuid/${uuid}`
     );
     setJob(response.data.loker);
   };

@@ -35,7 +35,7 @@ const Header = () => {
   const handleMenuTwo = async () => {
     if (user.role === "pekerja") {
       const response = await axios.get(
-        `http://localhost:5000/pekerja/uuid/${user.uuid}`
+        `https://job-match-api.up.railway.app/pekerja/uuid/${user.uuid}`
       );
       if (response.data.pekerja !== null) {
         navigate(`/data/pekerja/${user.uuid}`);
@@ -44,7 +44,7 @@ const Header = () => {
       }
     } else if (user.role === "loker") {
       const response = await axios.get(
-        `http://localhost:5000/loker/uuid/${user.uuid}`
+        `https://job-match-api.up.railway.app/loker/uuid/${user.uuid}`
       );
       if (response.data.loker !== null) {
         navigate(`/data/loker/${user.uuid}`);

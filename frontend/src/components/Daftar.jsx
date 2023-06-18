@@ -14,7 +14,7 @@ const Daftar = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/users`, {
+      await axios.post(`https://job-match-api.up.railway.app/users`, {
         name: name,
         email: email,
         password: password,
@@ -87,7 +87,11 @@ const Daftar = () => {
             <div className="input-container">
               <label className="text">Role</label>
               <div className="control">
-                <select className="input input-select" value={role} onChange={(e) => setRole(e.target.value)}>
+                <select
+                  className="input input-select"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                >
                   <option value="pekerja" selected>
                     Pekerja
                   </option>

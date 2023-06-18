@@ -17,7 +17,7 @@ html {
 
 main {
   flex: 1;
-  background-color: #68ba4911;
+  background-color: #68ba4922;
 }
 
 h1,
@@ -48,8 +48,6 @@ a {
   align-items: center;
   justify-content: space-around;
   padding: 15px;
-  box-shadow: 0 1px 1px rgba(154, 160, 185, 0.3),
-    0 1px 1px rgba(166, 173, 201, 0.3);
 }
 
 .header-logo {
@@ -70,25 +68,22 @@ a {
   list-style-type: none;
 }
 
-.nav-item > a {
+.nav-item > a, .dropdown > a {
   text-decoration: none;
   color: #2d342d;
 }
 
-.nav-item > a:hover {
+.nav-item > a:hover, .dropdown > a:hover {
   color: #68ba49;
 }
 
-.nav-item > a:focus {
+.nav-item > a:focus, .dropdown > a:focus {
   outline-color: #68ba49;
 }
 
 .hero {
-  display: flex;
-  align-items: center;
   min-height: 200px;
   width: 100%;
-  text-align: center;
   background-image: url("../../public/images/hero-image.jpg");
   background-position: center;
   background-color: #2d342d;
@@ -97,7 +92,7 @@ a {
 }
 
 .content {
-  margin: 10px 20px;
+  margin: 10px 20px 30px 20px;
 }
 
 .content-title {
@@ -202,8 +197,51 @@ a {
 }
 
 .footer {
-  padding: 30px;
+  padding: 20px;
   text-align: center;
+  background-color: #2d342d;
+  color: #fff;
+  border-top: 1px solid grey;
+}
+
+.footer-dev {
+  padding: 10px;
+  background-color: #2d342d;
+  border-top: 1px solid grey;
+}
+
+.footer-dev > h2 {
+  padding-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+}
+
+.dev-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  padding: 0px 200px;
+}
+
+.dev-container > p, a {
+  color: #fff;
+}
+
+.dev-container > p, a:hover {
+  color: #68ba49;
+}
+
+.dev-detail {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.dev-name > p {
+  color: #fff;
+  font-weight: bold;
 }
 
 .input-container {
@@ -235,8 +273,8 @@ a {
 }
 
 .image-preview {
-  width: 128px;
-  height: 128px;
+  width: 200px;
+  height: 150px;
 }
 
 .dropdown {
@@ -330,12 +368,45 @@ button {
   border-color: #0000cc;
 }
 
+.button-secondary {
+  margin-top: 10px;
+  padding: 10px;
+  background: transparent;
+  border: 3px solid #68ba49;
+  font-size: 20px;
+  font-weight: bold;
+  color: #68ba49;
+}
+
+.button-secondary:hover {
+  background-color: #68ba49;
+  border-color: #fff;
+  color: #fff;
+}
+
 .red {
   color: red;
 }
 
 .blue {
   color: blue;
+}
+
+.container-full {
+  text-align: center;
+  padding-block: 50px;
+  background-color: #2d342d;
+}
+
+.container-full > h2 {
+  padding-top: 20px;
+  font-size: 25px;
+  color: #68ba49;
+}
+
+.container-full > p {
+  padding: 20px 70px 0px;
+  color: #fff;
 }
 
 .loading {

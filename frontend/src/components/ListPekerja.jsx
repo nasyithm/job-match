@@ -10,7 +10,9 @@ const ListPekerja = () => {
   }, []);
 
   const getWorkers = async () => {
-    const response = await axios.get("http://localhost:5000/pekerja");
+    const response = await axios.get(
+      "https://job-match-api.up.railway.app/pekerja"
+    );
     setWorkers(response.data.pekerja);
   };
 
@@ -37,12 +39,12 @@ const ListPekerja = () => {
                   {worker.name}
                 </Link>
               </h2>
-              <p className="subtitle">Jenis Kelamin</p>
-              <p>{worker.gender}</p>
               <p className="subtitle">Pendidikan</p>
               <p>{worker.education}</p>
               <p className="subtitle">Keahlian</p>
               <p>{worker.skill.slice(0, 100)}</p>
+              <p className="subtitle">Jenis Kelamin</p>
+              <p>{worker.gender}</p>
             </div>
           </div>
         ))}
