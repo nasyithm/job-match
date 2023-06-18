@@ -23,8 +23,6 @@ app.use(
   cors({
     credentials: true,
     origin: "https://job-match-prod.netlify.app",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
   })
 );
 app.use(express.json());

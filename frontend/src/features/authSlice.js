@@ -19,6 +19,11 @@ export const LoginUser = createAsyncThunk(
           config: { withCredentials: true },
         },
         {
+          headers: {
+            "Access-Control-Allow-Origin": "https://job-match-prod.netlify.app",
+          },
+        },
+        {
           email: user.email,
           password: user.password,
         }
@@ -39,6 +44,11 @@ export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
       "https://job-match-api.up.railway.app/me",
       {
         config: { withCredentials: true },
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "https://job-match-prod.netlify.app",
+        },
       }
     );
     return response.data;
@@ -51,9 +61,17 @@ export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
 });
 
 export const LogOut = createAsyncThunk("user/LogOut", async () => {
-  await axios.delete("https://job-match-api.up.railway.app/logout", {
-    config: { withCredentials: true },
-  });
+  await axios.delete(
+    "https://job-match-api.up.railway.app/logout",
+    {
+      config: { withCredentials: true },
+    },
+    {
+      headers: {
+        "Access-Control-Allow-Origin": "https://job-match-prod.netlify.app",
+      },
+    }
+  );
 });
 
 export const authSlice = createSlice({
