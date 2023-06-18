@@ -62,7 +62,7 @@ const Header = () => {
         ☰
       </NavLink>
       <div className="header-logo">
-        <img src="icons/icon-32.png" alt="" />
+        <img src="%PUBLIC_URL%/icons/icon-32.png" alt="" />
         <h1 className="header-title">Job Match</h1>
       </div>
       <nav id="drawer" className={isActive ? "nav open" : "nav"}>
