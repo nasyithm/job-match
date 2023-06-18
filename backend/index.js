@@ -21,8 +21,8 @@ const store = new sessionStore({
 
 app.use(
   cors({
-    credentials: true,
-    origin: "https://job-match-prod.netlify.app/",
+    credentials: false,
+    origin: "https://job-match-prod.netlify.app",
   })
 );
 app.use(express.json());
