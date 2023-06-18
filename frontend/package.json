@@ -2,6 +2,7 @@
   "name": "job-match",
   "version": "1.0.0",
   "private": true,
+  "proxy": "",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
