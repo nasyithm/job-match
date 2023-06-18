@@ -21,7 +21,6 @@ const store = new sessionStore({
 
 app.use(
   cors({
-    credentials: false,
     origin: "https://job-match-prod.netlify.app",
   })
 );
