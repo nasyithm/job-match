@@ -30,12 +30,12 @@ app.use(FileUpload());
 // Use the session middleware
 app.use(
   session({
-    secret: "test",
+    secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
     store: store,
     cookie: {
-      secure: "auto",
+      secure: true,
     },
   })
 );
