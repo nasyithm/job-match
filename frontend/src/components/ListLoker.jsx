@@ -19,7 +19,7 @@ const ListLoker = () => {
   return (
     <article className="content">
       <h2 className="content-title">Cari Lowongan Kerja</h2>
-      <div id="restaurant-list" className="content-list">
+      <div className="content-list">
         {jobs.map((job) => (
           <div className="card" key={job.id}>
             <div className="card-header">

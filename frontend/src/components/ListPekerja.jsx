@@ -19,7 +19,7 @@ const ListPekerja = () => {
   return (
     <article className="content">
       <h2 className="content-title">Cari Pekerja</h2>
-      <div id="restaurant-list" className="content-list">
+      <div className="content-list">
         {workers.map((worker) => (
           <div className="card" key={worker.id}>
             <div className="card-header">
