@@ -14,13 +14,24 @@ const Daftar = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`https://job-match-api.up.railway.app/users`, {
-        name: name,
-        email: email,
-        password: password,
-        confPassword: confPassword,
-        role: role,
-      });
+      await axios.post(
+        `https://job-match-api.up.railway.app/users`,
+        {
+          config: { withCredentials: true },
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "https://job-match-prod.netlify.app",
+          },
+        },
+        {
+          name: name,
+          email: email,
+          password: password,
+          confPassword: confPassword,
+          role: role,
+        }
+      );
       navigate("/login");
     } catch (error) {
       if (error.response) {
