@@ -61,7 +61,7 @@ const Login = () => {
               </button>
             </div>
             <div>
-              <p className="text">Sudah punya akun?</p>
+              <p className="text">Belum punya akun?</p>
               <Link className="text blue" to={"/daftar"}>Daftar</Link>
             </div>
           </form>
